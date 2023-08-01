@@ -1,27 +1,51 @@
-<script setup>
-
-import IconPokemon from "@/components/icons/IconPokemon.vue";
-</script>
-
 <template>
     <div class="search_box">
         <div class="search">
             <div class= "select_area">
-<!--                <i class="fas fa-map-marker-alt map_icon"></i>-->
                 <div class="text">Search Pokémon</div>
             </div>
 
             <div class="line"></div>
 
             <div class = "text_and-icon">
-                <input type="text" class="search_text" id="search_text" placeholder="Search by Pokémon Name or Id ..">
-                <i>
-                    <IconPokemon />
-                </i>
+                <input
+                    v-model="searchVal"
+                    type="text"
+                    class="search_text"
+                    id="search_text"
+                    placeholder="By Pokémon Name or Id ..">
+                <a  @click="handlerSearchClick" style="cursor: pointer;">
+                    <i>
+                        <IconPokemon />
+                    </i>
+                </a>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+import {defineComponent, ref} from "vue"
+import IconPokemon from "@/components/icons/IconPokemon.vue"
+import { usePokemonStore } from "@/PokemonStore"
+
+export default defineComponent({
+    name: "MrsTplAdminShoppingCarts",
+    components: {IconPokemon},
+    setup() {
+        const store = usePokemonStore()
+        const searchVal = ref('')
+        const handlerSearchClick = () => {
+            store.searchPokemon(searchVal.value)
+        }
+
+        return {
+            searchVal,
+            handlerSearchClick,
+        }
+    },
+})
+</script>
 
 <style scoped>
 @import url(https://kit.fontawesome.com/9b8a7e18a0.js);
