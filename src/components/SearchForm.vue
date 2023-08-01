@@ -30,7 +30,7 @@ import IconPokemon from "@/components/icons/IconPokemon.vue"
 import { usePokemonStore } from "@/PokemonStore"
 
 export default defineComponent({
-    name: "MrsTplAdminShoppingCarts",
+    name: "SearchForm",
     components: {IconPokemon},
     setup() {
         const store = usePokemonStore()
